@@ -347,11 +347,15 @@ otp.widgets.ItinerariesWidget =
             }
             else if(leg.agencyId !== null) {
                 headerHtml += ": "+leg.agencyName+", ";
-                if(leg.route !== leg.routeLongName) {
-                    headerHtml += "("+leg.route+") ";
-                }
-                if (leg.routeLongName) {
-                    headerHtml += leg.routeLongName;
+                if (otp.config.useRouteLongName){
+                    if(leg.route !== leg.routeLongName) {
+                        headerHtml += "("+leg.route+") ";
+                    }
+                    if (leg.routeLongName) {
+                        headerHtml += leg.routeLongName;
+                    }
+                } else {
+                    headerHtml += leg.route + " ";
                 }
 
                 if(leg.headsign) {

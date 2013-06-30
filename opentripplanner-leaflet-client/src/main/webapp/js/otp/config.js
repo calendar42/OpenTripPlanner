@@ -69,6 +69,10 @@ otp.config = {
     showLogo            : true,
     showTitle           : true,
     showModuleSelector  : true,
+    
+
+    useRouteLongName    : true,  // format route name with both short-name and long-name
+
 
 
     /**
