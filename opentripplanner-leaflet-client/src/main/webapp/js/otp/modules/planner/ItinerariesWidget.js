@@ -326,8 +326,8 @@ otp.widgets.ItinerariesWidget =
             var headerHtml = "<b>"+otp.util.Itin.modeString(leg.mode).toUpperCase()+"</b>";
 
             // Add info about realtimeness of the leg
-            if (leg.realTime && typeof(leg.arrivalDelay) === 'number') {
-                var minDelay = Math.round(leg.arrivalDelay / 60)
+            if (leg.realTime && typeof(leg.departureDelay) === 'number') {
+                var minDelay = Math.round(leg.departureDelay / 60)
                 if (minDelay > 0) {
                     headerHtml += ' <span style="color:red;">(' + minDelay + 'min late)</span>';
                 } else if (minDelay < 0) {
@@ -346,7 +346,7 @@ otp.widgets.ItinerariesWidget =
                 }
             }
             else if(leg.agencyId !== null) {
-                headerHtml += ": "+leg.agencyId+", ";
+                headerHtml += ": "+leg.agencyName+", ";
                 if(leg.route !== leg.routeLongName) {
                     headerHtml += "("+leg.route+") ";
                 }
@@ -506,8 +506,11 @@ otp.widgets.ItinerariesWidget =
                 this_.module.drawAllStartBubbles(this_.itineraries[this_.activeIndex]);
             });
             
-
-            $('<div class="otp-itin-leg-endpointDescSub">Stop #'+leg.from.stopId.id+' [<a href="#">Stop Viewer</a>]</div>')
+            if (leg.from.stopCode !== null){
+                $('<div class="otp-itin-leg-endpointDescSub">Stop #'+leg.from.stopCode+' [<a href="#">Stop Viewer</a>]</div>')
+            } else {
+                $('<div class="otp-itin-leg-endpointDescSub">Stop '+leg.from.name+' [<a href="#">Stop Viewer</a>]</div>')
+            }
             .appendTo(legDiv)
             .click(function(evt) {
                 if(!this_.module.stopViewerWidget) {
