@@ -488,8 +488,8 @@ otp.widgets.ItinerariesWidget =
                 this_.module.drawAllStartBubbles(this_.itineraries[this_.activeIndex]);
             });
             
-
-            $('<div class="otp-itin-leg-endpointDescSub">Stop #'+leg.from.stopCode+' [<a href="#">Stop Viewer</a>]</div>')
+            var stopDesc = (leg.from.stopCode !== null) ? '#'+leg.from.stopCode : leg.from.name;
+            $('<div class="otp-itin-leg-endpointDescSub">Stop '+stopDesc+' [<a href="#">Stop Viewer</a>]</div>')
             .appendTo(legDiv)
             .click(function(evt) {
                 if(!this_.module.stopViewerWidget) {
