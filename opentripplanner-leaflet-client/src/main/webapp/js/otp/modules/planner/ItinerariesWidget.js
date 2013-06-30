@@ -181,7 +181,7 @@ otp.widgets.ItinerariesWidget =
             var stopId = itin.getFirstStopID();
             _.extend(params, { 
                 startTransitStopId :  stopId,
-                time : otp.util.Time.formatItinTime(newEndTime, "h:mma"),
+                time : otp.util.Time.formatItinTime(newEndTime, otp.config.timeFormat),
                 date : otp.util.Time.formatItinTime(newEndTime, "MM-DD-YYYY"),
                 arriveBy : true
             });
@@ -195,7 +195,7 @@ otp.widgets.ItinerariesWidget =
             var stopId = itin.getFirstStopID();
             _.extend(params, {
                 startTransitStopId :  stopId,
-                time : otp.util.Time.formatItinTime(newStartTime, "h:mma"),
+                time : otp.util.Time.formatItinTime(newStartTime, otp.config.timeFormat),
                 date : otp.util.Time.formatItinTime(newStartTime, "MM-DD-YYYY"),
                 arriveBy : false
             });
@@ -264,11 +264,11 @@ otp.widgets.ItinerariesWidget =
 
         div.append('<div style="position:absolute; width: '+(widthPx+5)+'px; height: 2px; left: '+(leftPx-2)+'px; top: 9px; background: black;" />');
         
-        var timeStr = otp.util.Time.formatItinTime(itin.getStartTime(), 'h:mma');
+        var timeStr = otp.util.Time.formatItinTime(itin.getStartTime(), otp.config.timeFormat);
         timeStr = timeStr.substring(0, timeStr.length - 1);
         div.append('<div class="otp-itinsAccord-header-time" style="left: '+(leftPx-32)+'px;">' + timeStr + '</div>');
         
-        var timeStr = otp.util.Time.formatItinTime(itin.getEndTime(), 'h:mma');
+        var timeStr = otp.util.Time.formatItinTime(itin.getEndTime(), otp.config.timeFormat);
         timeStr = timeStr.substring(0, timeStr.length - 1);
         div.append('<div class="otp-itinsAccord-header-time" style="left: '+(leftPx+widthPx+2)+'px;">' + timeStr + '</div>');
         
@@ -431,7 +431,7 @@ otp.widgets.ItinerariesWidget =
         
         var tripSummaryFooter = $('<div class="otp-itinTripSummaryFooter" />');
         
-        tripSummaryFooter.append('Valid ' + moment().format('MMM Do YYYY, h:mma'));
+        tripSummaryFooter.append('Valid ' + moment().format('MMM Do YYYY', otp.config.timeFormat));
         
         var itinLink = this.constructLink(itin.tripPlan.queryParams, { itinIndex : index });
         if(this.showItineraryLink) {
@@ -468,7 +468,7 @@ otp.widgets.ItinerariesWidget =
             
             // show the start time and stop
 
-            $('<div class="otp-itin-leg-leftcol">'+otp.util.Time.formatItinTime(leg.startTime, "h:mma")+"</div>").appendTo(legDiv);
+            $('<div class="otp-itin-leg-leftcol">'+otp.util.Time.formatItinTime(leg.startTime, otp.config.timeFormat)+"</div>").appendTo(legDiv);
 
             var startHtml = '<div class="otp-itin-leg-endpointDesc"><b>Board</b> at '+leg.from.name;
             if(otp.config.municoderHostname) {
@@ -568,7 +568,7 @@ otp.widgets.ItinerariesWidget =
 
             $('<div class="otp-itin-leg-buffer"></div>').appendTo(legDiv);            
 
-            $('<div class="otp-itin-leg-leftcol">'+otp.util.Time.formatItinTime(leg.endTime, "h:mma")+"</div>").appendTo(legDiv);           
+            $('<div class="otp-itin-leg-leftcol">'+otp.util.Time.formatItinTime(leg.endTime, otp.config.timeFormat)+"</div>").appendTo(legDiv);           
 
             var endHtml = '<div class="otp-itin-leg-endpointDesc"><b>Alight</b> at '+leg.to.name;
             if(otp.config.municoderHostname) {
