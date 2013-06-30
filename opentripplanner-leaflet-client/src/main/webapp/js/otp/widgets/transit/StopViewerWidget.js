@@ -214,7 +214,7 @@ otp.widgets.transit.StopViewerWidget =
     
     getTime : function(index) {
         if(index < 0 || index >= this.times.length) return "";
-        return otp.util.Time.formatItinTime(this.times[index], "h:mma");
+        return otp.util.Time.formatItinTime(this.times[index], otp.config.timeFormat);
     }
     
 });
