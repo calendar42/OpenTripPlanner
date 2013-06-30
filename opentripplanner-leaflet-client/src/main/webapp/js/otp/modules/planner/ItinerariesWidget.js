@@ -326,8 +326,8 @@ otp.widgets.ItinerariesWidget =
             var headerHtml = "<b>"+otp.util.Itin.modeString(leg.mode).toUpperCase()+"</b>";
 
             // Add info about realtimeness of the leg
-            if (leg.realTime && typeof(leg.arrivalDelay) === 'number') {
-                var minDelay = Math.round(leg.arrivalDelay / 60)
+            if (leg.realTime && typeof(leg.departureDelay) === 'number') {
+                var minDelay = Math.round(leg.departureDelay / 60)
                 if (minDelay > 0) {
                     headerHtml += ' <span style="color:red;">(' + minDelay + 'min late)</span>';
                 } else if (minDelay < 0) {
