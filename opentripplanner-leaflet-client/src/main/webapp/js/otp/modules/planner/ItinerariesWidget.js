@@ -488,8 +488,11 @@ otp.widgets.ItinerariesWidget =
                 this_.module.drawAllStartBubbles(this_.itineraries[this_.activeIndex]);
             });
             
-
-            $('<div class="otp-itin-leg-endpointDescSub">Stop #'+leg.from.stopCode+' [<a href="#">Stop Viewer</a>]</div>')
+            if (leg.from.stopCode !== null){
+                $('<div class="otp-itin-leg-endpointDescSub">Stop #'+leg.from.stopCode+' [<a href="#">Stop Viewer</a>]</div>')
+            } else {
+                $('<div class="otp-itin-leg-endpointDescSub">Stop '+leg.from.name+' [<a href="#">Stop Viewer</a>]</div>')
+            }
             .appendTo(legDiv)
             .click(function(evt) {
                 if(!this_.module.stopViewerWidget) {
