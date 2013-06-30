@@ -489,7 +489,7 @@ otp.widgets.ItinerariesWidget =
             });
             
 
-            $('<div class="otp-itin-leg-endpointDescSub">Stop #'+leg.from.stopId.id+' [<a href="#">Stop Viewer</a>]</div>')
+            $('<div class="otp-itin-leg-endpointDescSub">Stop #'+leg.from.stopCode+' [<a href="#">Stop Viewer</a>]</div>')
             .appendTo(legDiv)
             .click(function(evt) {
                 if(!this_.module.stopViewerWidget) {
